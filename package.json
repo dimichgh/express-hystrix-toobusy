@@ -1,0 +1,36 @@
+{
+  "name": "express-hystrix-toobusy",
+  "version": "1.0.0",
+  "description": "The module provides express too-busy middleware that has a more reliable logic to detect busy state of the system",
+  "main": "index.js",
+  "dependencies": {
+    "hystrix-too-busy": "^0.1.1"
+  },
+  "devDependencies": {
+    "express": "^4.15.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
+  },
+  "scripts": {
+    "test": "mocha test",
+    "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --  --timeout 4s -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimichgh/express-hystrix-toobusy.git"
+  },
+  "keywords": [
+    "express",
+    "too-busy",
+    "toobusy",
+    "hystrix",
+    "hystrixjs"
+  ],
+  "author": "Dmytro Semenov <dimichsdg@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimichgh/express-hystrix-toobusy/issues"
+  },
+  "homepage": "https://github.com/dimichgh/express-hystrix-toobusy#readme"
+}
