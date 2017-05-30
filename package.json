@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/dimichgh/express-hystrix-toobusy/issues"
   },
-  "homepage": "https://github.com/dimichgh/express-hystrix-toobusy#readme"
+  "homepage": "https://github.com/dimichgh/express-hystrix-toobusy#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
 }
