@@ -1,5 +1,4 @@
 # express-hystrix-toobusy
-=========================
 
 The module provides express too-busy handler. The handler is based on [hystrix-too-busy module](https://github.com/trooba/hystrix-too-busy)
 
