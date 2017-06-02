@@ -8,10 +8,14 @@ module.exports = function toobusyFactory(config) {
         if (config.handler && typeof config.handler === 'string') {
             config.handler = require(config.handler);
         }
+        if (config.commandResolver && typeof config.commandResolver === 'string') {
+            config.commandResolver = require(config.commandResolver);
+        }
     }
 
     return function toobusy(req, res, next) {
-        Toobusy.getStatus(busy => {
+        const command = config && config.commandResolver && config.commandResolver(req);
+        Toobusy.getStatus(command, busy => {
             if (busy) {
                 const err = new Error('TooBusy');
                 if (config && config.handler) {

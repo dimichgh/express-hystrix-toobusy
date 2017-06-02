@@ -4,7 +4,7 @@
   "description": "The module provides express too-busy middleware that has a more reliable logic to detect busy state of the system",
   "main": "index.js",
   "dependencies": {
-    "hystrix-too-busy": "^0.1.1"
+    "hystrix-too-busy": "^0.2"
   },
   "devDependencies": {
     "async": "^2.4.1",
