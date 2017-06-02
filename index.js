@@ -3,23 +3,27 @@
 const Toobusy = require('hystrix-too-busy');
 
 module.exports = function toobusyFactory(config) {
+    let fallback;
+    let commandResolver;
     if (config) {
         Toobusy.init(config);
-        if (config.handler && typeof config.handler === 'string') {
-            config.handler = require(config.handler);
+        fallback = config.fallback;
+        if (fallback && typeof fallback === 'string') {
+            fallback = require(fallback);
         }
-        if (config.commandResolver && typeof config.commandResolver === 'string') {
-            config.commandResolver = require(config.commandResolver);
+        commandResolver = config.commandResolver;
+        if (commandResolver && typeof commandResolver === 'string') {
+            commandResolver = require(commandResolver);
         }
     }
 
     return function toobusy(req, res, next) {
-        const command = config && config.commandResolver && config.commandResolver(req);
+        const command = commandResolver && commandResolver(req);
         Toobusy.getStatus(command, busy => {
             if (busy) {
                 const err = new Error('TooBusy');
-                if (config && config.handler) {
-                    return config.handler(err, req, res, next);
+                if (fallback) {
+                    return fallback(err, req, res, next);
                 }
                 return next(err);
             }

@@ -27,8 +27,23 @@ $ npm install express-hystrix-toobusy -S
 const toobusy = require('express-hystrix-toobusy');
 const express = require('express');
 const app = express();
+app.use(toobusy());
+```
+
+### Configuration
+
+The module exposes the configuration of [hystrix-too-busy](https://github.com/trooba/hystrix-too-busy) module.
+
+By default, it assumes the same hystrix command for all requests with default hystrix configuration, but you can setup commandResolver that will start distinguishing requests between each other and tune too-busy settings for each command.
+
+If command config is not specified, it will use default one. This maybe useful if ones wants to give priorities to different routes. For example, if some commands are more important than the others, one can create 'important' command and tune the circuit breaker to stay longer close while unimportant ones will get short circuited and denied immediately when the system gets under the stress.
+
+```js
+const toobusy = require('express-hystrix-toobusy');
+const express = require('express');
+const app = express();
 app.use(toobusy({
-    handler: (err, req, res) => {
+    fallback: (err, req, res) => {
         if (err.message === 'TooBusy') {
             res.status(503).end();
             return;
@@ -66,9 +81,3 @@ app.use(toobusy({
     }
 }));
 ```
-
-### Configuration
-
-The module exposes the configuration of [hystrix-too-busy](https://github.com/trooba/hystrix-too-busy) module.
-
-By default, it assumes the same hystrix command for all requests with default hystrix configuration, but you can setup commandResolver that will start distinguishing requests between each other and tune too-busy settings for each command. If command config is not specified, it will use default one. This maybe useful if ones wants to give priorities to different routes. For example, if some commands are more important than the others, we can create 'important' command and tune the circuit breaker to stay longer close while unimportant ones will get short circuited and denied immediately when the system gets under the stress.

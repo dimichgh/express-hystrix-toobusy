@@ -72,7 +72,7 @@ describe(__filename, () => {
 
         const app = express();
         app.use(handler({
-            handler: (err, req, res) => {
+            fallback: (err, req, res) => {
                 Assert.ok(err);
                 Assert.equal('TooBusy', err.message);
                 res.status(500).end();
@@ -112,7 +112,7 @@ describe(__filename, () => {
 
         const app = express();
         app.use(handler({
-            handler: require.resolve('./fixtures/fallback')
+            fallback: require.resolve('./fixtures/fallback')
         }));
         app.use((req, res) => {
             res.send('ok');
