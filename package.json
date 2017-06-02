@@ -1,6 +1,6 @@
 {
   "name": "express-hystrix-toobusy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The module provides express too-busy middleware that has a more reliable logic to detect busy state of the system",
   "main": "index.js",
   "dependencies": {
