@@ -1,5 +1,7 @@
 # express-hystrix-toobusy
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dimichgh/express-hystrix-toobusy.svg)](https://greenkeeper.io/)
+
 The module provides express too-busy handler. The handler is based on [hystrix-too-busy module](https://github.com/trooba/hystrix-too-busy)
 
 [![codecov](https://codecov.io/gh/dimichgh/express-hystrix-toobusy/branch/master/graph/badge.svg)](https://codecov.io/gh/dimichgh/express-hystrix-toobusy)
